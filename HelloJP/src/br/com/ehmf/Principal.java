@@ -1,6 +1,15 @@
 package br.com.ehmf;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import br.com.ehmf.exception.LimiteCreditoExcedidoException;
 import br.com.ehmf.model.Aluno;
@@ -147,7 +156,7 @@ public class Principal {
 			int valor = 10 / 0;
 			System.out.println("Fiz a conta....");
 			
-			int[] numeros = {0,1,2};
+			int[] numeros = {0,1,2,5};
 			for(int y = 0; y<4;y++)
 				System.out.println(numeros[y]);
 			
@@ -156,9 +165,9 @@ public class Principal {
 		} catch (ArrayIndexOutOfBoundsException e) {
 			System.out.println(" - Erro: " + e.getMessage());
 		}
+		System.out.println("-----------------------------");		
 		System.out.println("-----------------------------");
 		
-		System.out.println("-----------------------------");
 		Funcao funcao = new Funcao();
 		try {
 			funcao.lerArquivo("Principal.class");
@@ -174,6 +183,93 @@ public class Principal {
 		} catch (LimiteCreditoExcedidoException e) {
 			System.out.println(" - Erro: " + e.getMessage());
 		}
+		
+		System.out.println("-----------------------------");
+		System.out.println(":: COLEÇÕES - LIST");
+		List<String> nomes = new ArrayList<String>();
+		nomes.add("Maria");
+		nomes.add("Joao");
+		nomes.add("Jose");
+		
+		for(String nome : nomes) {
+			System.out.println("Nome: " + nome);
+		}
+		System.out.println("-----------------------------");
+		nomes.add("Pedro");
+		for(String nome : nomes) {
+			System.out.println("Nome: " + nome);
+		}
+		System.out.println("-----------------------------");
+		/*nomes.remove(1);
+		for(String nome : nomes) {
+			System.out.println("Nome: " + nome);
+		}*/
+		Collections.sort(nomes);
+		for(String nome : nomes) {
+			System.out.println("Nome: " + nome);
+		}
+		System.out.println("-----------------------------");
+		
+		List<Carro> carros = new ArrayList<Carro>();
+		carros.add(carroZe);
+		carros.add(carroJao);
+		carros.add(carroTiao);
+		carros.add(carroFulano);
+		
+		for(Carro c : carros) {
+			System.out.println(c.toString());
+		}
+		System.out.println("-----------------------------");
+		nomes.add("Arthur");
+		nomes.add("Gabriel");
+		Collections.sort(nomes);
+		for(String nome : nomes) {
+			System.out.println("Nome: " + nome);
+		}
+		
+		System.out.println("-----------------------------");
+		List<String> nomesFiltrados = nomes.stream()
+				.filter(nome2 -> nome2.startsWith("J"))
+				.collect(Collectors.toList());
+		
+		for(String nome : nomesFiltrados) {
+			System.out.println("Nome filtro: " + nome);
+		}
+		
+		System.out.println("-----------------------------");
+		System.out.println(":: COLEÇÕES - SET");
+		Set<String> cores = new HashSet<String>();
+		
+		cores.add("Azul");
+		cores.add("Vermelho");
+		cores.add("Verde");
+		for(String cor : cores) {
+			System.out.println(cor);
+		}
+		
+		System.out.println("-----------------------------");
+		System.out.println(":: COLEÇÕES - HASHMAP");
+		Map<String, String> paises = new HashMap<String, String>();
+		paises.put("Brasil", "Brasília");
+		paises.put("França", "Paris");
+		paises.put("Portugal", "Lisboa");
+		
+		for(Map.Entry<String, String> entrada : paises.entrySet() ) {
+			System.out.println("Capitais: " + entrada.getValue());
+		}
+		paises.put("Espanha", "Madri");
+		System.out.println("Capital de Portugal: " + paises.get("Portugal"));
+		
+		
+		System.out.println("-----------------------------");
+		Map<Integer, Carro> estacionamento = new HashMap<Integer, Carro>();
+		estacionamento.put(0, carroZe);
+		estacionamento.put(1, carroFulano);
+		estacionamento.put(2, carroJao);
+		estacionamento.put(3, carroTiao);
+		
+		System.out.println("Carro do Jao: " + carroJao.toString());
+		System.out.println("Carro do Jao: " + estacionamento.get(2));
 		
 		System.out.println("F-----------------------------");
 	}
