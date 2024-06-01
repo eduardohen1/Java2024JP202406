@@ -1,5 +1,8 @@
 package br.com.ehmf;
 
+import br.com.ehmf.model.Aluno;
+import br.com.ehmf.model.Professor;
+
 public class Principal {
 
 	public static void main(String[] args) {
@@ -115,6 +118,23 @@ public class Principal {
 		carroFulano.andar();
 		System.out.println("Carro fulano: " + carroFulano.toString());
 	
+		System.out.println("-----------------------------");
+		System.out.println(":: PROGRAÇÃO ORIENTADA A OBJETOS - HERANÇA:");
+		
+		Aluno aluno1 = new Aluno("123456",2024, 
+				"Nome aluno", "Telefone 1231", "aluno1@a.com");		
+		System.out.println("Aluno1: " + aluno1.toString());
+		
+		Professor professor1 = new Professor("POO", "Mestre", 1,
+				 "Professor 1", "646546546540", "prof1@a.com"
+				);
+		System.out.println("Professor1: " + professor1.toString());
+		
+		Professor prof2 = new Professor("Banco de dados", "Mestre" , 2,
+				"Professor2", "6546464", "prof2@a.com",
+				"http://linkedin.com");
+		System.out.println("Professor2: " + prof2.toString());
+		
 	}
 
 }
