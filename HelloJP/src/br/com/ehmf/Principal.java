@@ -1,6 +1,10 @@
 package br.com.ehmf;
 
+import java.io.FileNotFoundException;
+
+import br.com.ehmf.exception.LimiteCreditoExcedidoException;
 import br.com.ehmf.model.Aluno;
+import br.com.ehmf.model.ContaBancaria;
 import br.com.ehmf.model.Professor;
 
 public class Principal {
@@ -135,6 +139,43 @@ public class Principal {
 				"http://linkedin.com");
 		System.out.println("Professor2: " + prof2.toString());
 		
+		
+		System.out.println("-----------------------------");
+		System.out.println(":: TRATAMENTO DE ERROS");
+		try {
+			System.out.println("Vou fazer a conta...");
+			int valor = 10 / 0;
+			System.out.println("Fiz a conta....");
+			
+			int[] numeros = {0,1,2};
+			for(int y = 0; y<4;y++)
+				System.out.println(numeros[y]);
+			
+		} catch (ArithmeticException e) {
+			System.out.println(" - Erro: " + e.getMessage());
+		} catch (ArrayIndexOutOfBoundsException e) {
+			System.out.println(" - Erro: " + e.getMessage());
+		}
+		System.out.println("-----------------------------");
+		
+		System.out.println("-----------------------------");
+		Funcao funcao = new Funcao();
+		try {
+			funcao.lerArquivo("Principal.class");
+		} catch (FileNotFoundException e) {
+			System.out.println(" - Erro: " + e.getMessage());
+			//e.printStackTrace();
+		}
+		System.out.println("-----------------------------");
+		System.out.println("-----------------------------");
+		ContaBancaria contaBancaria = new ContaBancaria(1500);
+		try {
+			contaBancaria.fazerPix(2000);
+		} catch (LimiteCreditoExcedidoException e) {
+			System.out.println(" - Erro: " + e.getMessage());
+		}
+		
+		System.out.println("F-----------------------------");
 	}
 
 }
