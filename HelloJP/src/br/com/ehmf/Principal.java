@@ -82,6 +82,21 @@ public class Principal {
 			i++;
 		}
 		
+		System.out.println("-----------------------------");
+		System.out.println(":: PROGRAÇÃO ORIENTADA A OBJETOS:");
+		
+		Carro carroJao = new Carro(); //instanciando uma classe
+		carroJao.cor = "Branca";
+		carroJao.marca = "Chevrolet";
+		carroJao.modelo = "Onix";
+		carroJao.andar();
+		
+		Carro carroTiao = new Carro(); //instanciando uma classe
+		carroTiao.cor = "Azul";
+		carroTiao.marca = "BYD";
+		carroTiao.modelo = "Delphin";
+		carroTiao.parar();
+		
 	}
 
 }
