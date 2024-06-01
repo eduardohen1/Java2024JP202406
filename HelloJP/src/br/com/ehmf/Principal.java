@@ -85,6 +85,7 @@ public class Principal {
 		System.out.println("-----------------------------");
 		System.out.println(":: PROGRAÇÃO ORIENTADA A OBJETOS:");
 		
+		/*
 		Carro carroJao = new Carro(); //instanciando uma classe
 		carroJao.cor = "Branca";
 		carroJao.marca = "Chevrolet";
@@ -96,7 +97,24 @@ public class Principal {
 		carroTiao.marca = "BYD";
 		carroTiao.modelo = "Delphin";
 		carroTiao.parar();
+		*/
+		Carro carroJao = new Carro("Branca", "Chevrolet", "Onix");
+		carroJao.andar();
 		
+		Carro carroTiao = new Carro("Azul", "BYD", "Delphin","-");
+		carroTiao.parar();
+		
+		Carro carroZe = new Carro("Vermelho", "VW", "Fusca",false);
+		System.out.println("Carro Zé: " + carroZe.toString());
+		carroZe.andar();
+		
+		Carro carroFulano = new Carro();
+		carroFulano.setCor("Verde");
+		System.out.println("A cor do carro de Fulano é: " + 
+								carroFulano.getCor());
+		carroFulano.andar();
+		System.out.println("Carro fulano: " + carroFulano.toString());
+	
 	}
 
 }
