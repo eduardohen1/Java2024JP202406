@@ -14,7 +14,9 @@ import java.util.stream.Collectors;
 import br.com.ehmf.exception.LimiteCreditoExcedidoException;
 import br.com.ehmf.model.Aluno;
 import br.com.ehmf.model.ContaBancaria;
+import br.com.ehmf.model.Disciplina;
 import br.com.ehmf.model.Professor;
+import br.com.ehmf.model.Pessoa;
 
 public class Principal {
 
@@ -148,6 +150,16 @@ public class Principal {
 				"http://linkedin.com");
 		System.out.println("Professor2: " + prof2.toString());
 		
+		System.out.println("-----------------------------");
+		System.out.println(":: PROGRAÇÃO ORIENTADA A OBJETOS - HERANÇA/POLIMORFISMO:");
+		Pessoa pessoa1 = new Aluno("3333", 2024, "Nome pessoa 1", "Telefone pessoa 1", 
+				"pessoa1@a.com"); //criar uma Pessoa implementando Aluno
+		
+		Pessoa pessoa2 = new Professor("Prog Web", "Doutor", 2, 
+				"Pessoa 2", "646546464", "prof2@a.com"); //criar uma Pessoa implementando Professor
+		
+		System.out.println("Pessoa1: " + pessoa1.toString());
+		System.out.println("Pessoa2: " + pessoa2.toString());
 		
 		System.out.println("-----------------------------");
 		System.out.println(":: TRATAMENTO DE ERROS");
@@ -271,7 +283,23 @@ public class Principal {
 		System.out.println("Carro do Jao: " + carroJao.toString());
 		System.out.println("Carro do Jao: " + estacionamento.get(2));
 		
+		System.out.println("-----------------------------");
+		System.out.println(":: BUILDER");
+		Disciplina disciplina1 = new Disciplina("POO","2p",300);
+		System.out.println("Disciplina1: " + disciplina1);
+		
+		Disciplina disciplina2 = Disciplina.builder()
+				.setNome("Banco de dados")
+				.setPeriodo("3p")
+				
+				.build();
+		System.out.println("Disciplina2: " + disciplina2);
+		
+		
 		System.out.println("F-----------------------------");
+		
+		
+		
 	}
 
 }
