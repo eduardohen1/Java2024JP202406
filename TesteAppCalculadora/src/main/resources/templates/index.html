@@ -11,8 +11,11 @@
 	<form action="#" th:action="@{/}" method="post" id="operacaoForm">
 		<label for="modelOperacoes">Selecione uma opção:</label>
 		<select id="modelOperacoes" name="modelOperacoes">
-			<option value="Soma">Soma</option>
-			<option value="Subtração">Subtração</option>
+			<option th:each="operacao: ${modelOperacoes}"
+			        th:value="${operacao}"
+			        th:text="${operacao}"
+			        th:selected="${operacao == selectedModel}">
+			</option>
 		</select>
 		
 		<label for="valor01">Valor 01:</label>
@@ -24,6 +27,12 @@
 		<button type="submit" id="submitBtn">Calcular</button>
 		
 	</form>
+	
+	<div>
+		<h4>Resposta:</h4>
+		<span>Resposta aki</span>
+		<button type="button" id="clearBtn">Limpar resposta</button>
+	</div>
 	
 	
 </body>
