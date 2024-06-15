@@ -25,6 +25,9 @@ public class WebController {
 			@RequestParam String valor02,
 			Model model) {
 		
+		String resposta = "";
+		int resp = 0;
+		
 		if(modelOperacoes.isEmpty() || valor01.isEmpty() || valor02.isEmpty()) {
 			model.addAttribute("response","Existem campos em branco!");
 			model.addAttribute("modelOperacoes", 
@@ -32,8 +35,33 @@ public class WebController {
 			return "index";
 		}
 		
+		try {
+			switch(modelOperacoes) {
+				case "Soma":
+					resp = Integer.parseInt(valor01) + Integer.parseInt(valor02);
+					break;
+				case "Subtração":
+					resp = Integer.parseInt(valor01) - Integer.parseInt(valor02);
+					break;
+				case "Multiplicação":
+					resp = Integer.parseInt(valor01) * Integer.parseInt(valor02);
+					break;
+				case "Divisão":
+					resp = Integer.parseInt(valor01) / Integer.parseInt(valor02);
+					break;
+			}
+		}catch (ArithmeticException e) {
+			model.addAttribute("response","Erro no cálculo: " + e.getMessage());
+			model.addAttribute("modelOperacoes", 
+					List.of("Soma", "Subtração", "Multiplicação","Divisão"));
+			return "index";
+		}
+		resposta = String.valueOf(resp);
 		
-		
+		//enviando dados para o site:
+		model.addAttribute("response","Resultado: " + resposta);
+		model.addAttribute("modelOperacoes", 
+				List.of("Soma", "Subtração", "Multiplicação","Divisão"));
 		return "index";
 	}
 	
