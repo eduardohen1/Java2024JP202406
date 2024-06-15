@@ -28,9 +28,9 @@
 		
 	</form>
 	
-	<div>
+	<div th:if="${response != null}" id="responseDiv">
 		<h4>Resposta:</h4>
-		<span>Resposta aki</span>
+		<span th:text="${response}"></span>
 		<button type="button" id="clearBtn">Limpar resposta</button>
 	</div>
 	

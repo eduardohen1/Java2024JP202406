@@ -25,9 +25,15 @@ public class WebController {
 			@RequestParam String valor02,
 			Model model) {
 		
-		System.out.println("modelOperacoes: " + modelOperacoes + ", " +
-						   "valor01: " + valor01 + ", " +
-				           "valor02: " + valor02);
+		if(modelOperacoes.isEmpty() || valor01.isEmpty() || valor02.isEmpty()) {
+			model.addAttribute("response","Existem campos em branco!");
+			model.addAttribute("modelOperacoes", 
+					List.of("Soma", "Subtração", "Multiplicação","Divisão"));
+			return "index";
+		}
+		
+		
+		
 		return "index";
 	}
 	
