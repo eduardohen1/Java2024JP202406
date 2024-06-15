@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Aplicação Calculadora Spring</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width-device-width, initial-scale=1" />
+</head>
+
+<body>
+	<h1>Calculadora Spring</h1>
+	<form action="#" th:action="@{/}" method="post" id="operacaoForm">
+		<label for="modelOperacoes">Selecione uma opção:</label>
+		<select id="modelOperacoes" name="modelOperacoes">
+			<option value="Soma">Soma</option>
+			<option value="Subtração">Subtração</option>
+		</select>
+		
+		<label for="valor01">Valor 01:</label>
+		<input id="valor01" name="valor01" type="text" />
+		
+		<label for="valor02">Valor 02:</label>
+		<input id="valor02" name="valor02" type="text" />
+		
+		<button type="submit" id="submitBtn">Calcular</button>
+		
+	</form>
+	
+	
+</body>
+</html>
