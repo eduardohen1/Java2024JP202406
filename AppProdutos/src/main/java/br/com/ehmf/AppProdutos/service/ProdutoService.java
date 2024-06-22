@@ -109,12 +109,16 @@ public class ProdutoService {
 		List<ProdutoSimplesDTO> listProdutoSimplesDTOs = new ArrayList<ProdutoSimplesDTO>();
 		
 		//Converter obj de bd para ProdutoSimplesDTO
-		for(Object[] obj : listResult) {
+		/*for(Object[] obj : listResult) {
 			ProdutoSimplesDTO pDTO = returnDBProdutoSimplesDTO(obj);
 			listProdutoSimplesDTOs.add(pDTO);
-		}
-		return listProdutoSimplesDTOs;
-		
+		}*/
+		//usando a lógica acima, utilizamos os conceitos de 
+		// lambda e stream:
+		listResult.forEach(pDTO -> {
+			listProdutoSimplesDTOs.add(returnDBProdutoSimplesDTO(pDTO));
+		});		
+		return listProdutoSimplesDTOs;		
 	}
 	
 	/**
