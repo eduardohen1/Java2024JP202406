@@ -58,7 +58,8 @@ public class EstoqueService implements EstoqueServiceInterface {
 	@Override
 	public Estoque update(Estoque estoque) {
 		//pesquisar se o estoque existe:
-		Optional<Estoque> findEstoque = estoqueRepository.findById(estoque.getId());
+		Optional<Estoque> findEstoque = estoqueRepository
+				.findById(estoque.getId());
 		
 		//se o estoque existir, atualizo (persisto)
 		if(findEstoque.isPresent()) {
