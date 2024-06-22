@@ -15,5 +15,9 @@ public interface ProdutoRepository extends JpaRepository<Produto, Long> {
 		   nativeQuery = true)
 	List<Object[]> findProdutoAndQuantidade();
 	
+	@Query(value = "select tp.id, tp.codigo_barras, tp.nome, tp.preco, te.quantidade from tb_produto tp inner join tb_estoque te on tp.id  = te.produto_id where te.quantidade < ?1",
+		   nativeQuery = true)
+	List<Object[]> findProdutoAndQuantidadeMenor(Integer qte);
+	
 	
 }

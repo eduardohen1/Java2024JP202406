@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.ehmf.AppProdutos.dto.ProdutoDTO;
+import br.com.ehmf.AppProdutos.dto.ProdutoSimplesDTO;
 import br.com.ehmf.AppProdutos.model.Produto;
 import br.com.ehmf.AppProdutos.repository.ProdutoRepository;
 
@@ -77,9 +78,42 @@ public class ProdutoService {
 		
 		for(Object[] obj : listResult) {
 			ProdutoDTO pDTO = returnBDProdutoDTO(obj);
+			listProdutoDTO.add(pDTO);
 		}
 		
-		return null;
+		return listProdutoDTO;
+		
+	}
+	
+	/**
+	 * Consulta em banco de dados, onde retorna o Produto com sua respectiva 
+	 * quantidade que seja <span>menor</span> que o parâmetro passado
+	 * @param qte quantidade a ser comparada
+	 * @return lista de ProdutoDTO
+	 */
+	public List<ProdutoDTO> findProdutoAndQuantidadeMenor(Integer qte){
+		List<Object[]> listResult = produtoRepository.findProdutoAndQuantidadeMenor(qte);
+		List<ProdutoDTO> listProdutoDTO = new ArrayList<ProdutoDTO>();
+		
+		//converter obj de banco de dados para ProdutoDTO
+		for(Object[] obj : listResult) {
+			ProdutoDTO pDTO = returnBDProdutoDTO(obj);
+			listProdutoDTO.add(pDTO);
+		}
+		
+		return listProdutoDTO;
+	}
+	
+	public List<ProdutoSimplesDTO> findProdutosPrecoVarejo(){
+		List<Object[]> listResult = produtoRepository.findProdutoAndQuantidade();
+		List<ProdutoSimplesDTO> listProdutoSimplesDTOs = new ArrayList<ProdutoSimplesDTO>();
+		
+		//Converter obj de bd para ProdutoSimplesDTO
+		for(Object[] obj : listResult) {
+			ProdutoSimplesDTO pDTO = returnDBProdutoSimplesDTO(obj);
+			listProdutoSimplesDTOs.add(pDTO);
+		}
+		return listProdutoSimplesDTOs;
 		
 	}
 	
@@ -98,6 +132,20 @@ public class ProdutoService {
 			produtoDTO.setQuantidade(((Integer)resultado[4]).intValue());
 		}
 		return produtoDTO;
+	}
+	
+	private ProdutoSimplesDTO returnDBProdutoSimplesDTO(Object[] resultado) {
+		if(resultado != null) {
+			ProdutoSimplesDTO produtoSimplesDTO = new ProdutoSimplesDTO(
+					((Long)resultado[0]).longValue(), 
+					(String)resultado[1], 
+					((Double)resultado[3]).doubleValue(), 
+					(((Double)resultado[3]).doubleValue() * .02),
+					((Integer)resultado[4]).intValue());
+			return produtoSimplesDTO;
+		}else {
+			return null;
+		}
 	}
 	
 }
