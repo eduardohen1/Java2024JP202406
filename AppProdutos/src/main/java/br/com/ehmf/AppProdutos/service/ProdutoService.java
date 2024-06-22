@@ -140,8 +140,8 @@ public class ProdutoService {
 					((Long)resultado[0]).longValue(), 
 					(String)resultado[1], 
 					((Double)resultado[3]).doubleValue(), 
-					(((Double)resultado[3]).doubleValue() * .02),
-					((Integer)resultado[4]).intValue());
+					(((Double)resultado[3]).doubleValue() * 1.02),
+					((Integer)resultado[4]).intValue()); //o preço de varejo é 2% a mais
 			return produtoSimplesDTO;
 		}else {
 			return null;
