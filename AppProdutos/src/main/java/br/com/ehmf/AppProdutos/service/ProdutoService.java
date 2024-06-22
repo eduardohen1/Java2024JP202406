@@ -1,11 +1,13 @@
 package br.com.ehmf.AppProdutos.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.ehmf.AppProdutos.dto.ProdutoDTO;
 import br.com.ehmf.AppProdutos.model.Produto;
 import br.com.ehmf.AppProdutos.repository.ProdutoRepository;
 
@@ -66,6 +68,36 @@ public class ProdutoService {
 	
 	public void delete(Long id) {
 		produtoRepository.deleteById(id);
+	}
+	
+	public List<ProdutoDTO> findProdutoAndQuantidade(){
+		
+		List<Object[]> listResult = produtoRepository.findProdutoAndQuantidade();
+		List<ProdutoDTO> listProdutoDTO = new ArrayList<ProdutoDTO>();
+		
+		for(Object[] obj : listResult) {
+			ProdutoDTO pDTO = returnBDProdutoDTO(obj);
+		}
+		
+		return null;
+		
+	}
+	
+	/**
+	 * Conversão de objeto recebido do banco de dados para DTO de produtos
+	 * @param resultado objeto do BD
+	 * @return objeto ProdutoDTO
+	 */
+	private ProdutoDTO returnBDProdutoDTO(Object[] resultado) {
+		ProdutoDTO produtoDTO = new ProdutoDTO();
+		if(resultado != null) {
+			produtoDTO.setId(((Long)resultado[0]).longValue()   );
+			produtoDTO.setCodigoBarras((String)resultado[1]);
+			produtoDTO.setNome((String)resultado[2]);
+			produtoDTO.setPreco(((Double)resultado[3]).doubleValue());
+			produtoDTO.setQuantidade(((Integer)resultado[4]).intValue());
+		}
+		return produtoDTO;
 	}
 	
 }

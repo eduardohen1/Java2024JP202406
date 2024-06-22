@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.ehmf.AppProdutos.dto.ProdutoDTO;
 import br.com.ehmf.AppProdutos.model.Produto;
 import br.com.ehmf.AppProdutos.service.ProdutoService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -103,6 +104,18 @@ public class ProdutoResource {
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT); //status code 204
 	}
 	
+	@Operation(summary = "Pesquisa de uma lista contendo os dados de Produto e sua quantidade em estoque")
+	@GetMapping("/produtoAndQte") //http://localhost:8081/api/produtos/produtoAndQte 
+	public ResponseEntity<List<ProdutoDTO>> findProdutoAndQuantidade(){
+		List<ProdutoDTO> produtoDtos = produtoService.findProdutoAndQuantidade();
+		if(produtoDtos == null) {
+			return ResponseEntity.notFound().build();
+		}
+		if(produtoDtos.size() == 0) {
+			return ResponseEntity.notFound().build();
+		}
+		return ResponseEntity.ok(produtoDtos);
+	}
 	
 	
 }
