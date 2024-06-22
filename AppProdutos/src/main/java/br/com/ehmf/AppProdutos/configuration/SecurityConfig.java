@@ -14,12 +14,14 @@ public class SecurityConfig {
 
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+		//System.out.println(">>> Passou pelo filtro de request");
 		http
 			.csrf().disable()
 			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 			.and()
 			.authorizeHttpRequests(
 					(authz) -> authz.requestMatchers(
+							"/token",
 							"/v3/api-docs/**",
 							"/swagger-ui/**",
 							"/swagger-ui.html",

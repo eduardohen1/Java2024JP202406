@@ -30,6 +30,7 @@ public class JwtTokenFilter extends OncePerRequestFilter {
 		//Extrair o token do cabeçalho da requisição
 		String token = request.getHeader("Authorization");
 		if(token != null && token.startsWith("Bearer ")) {
+			token = token.substring(7);
 			//validar o token
 			if(jwtTokenUtil.validateToken(token)) {
 				//se válido, configurar a autenticação no contexto da aplicação
