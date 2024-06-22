@@ -9,6 +9,7 @@ import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Contact;
 import io.swagger.v3.oas.models.info.Info;
+import io.swagger.v3.oas.models.security.SecurityRequirement;
 import io.swagger.v3.oas.models.security.SecurityScheme;
 
 @Configuration
@@ -18,9 +19,9 @@ public class OpenApiConfig {
 	public OpenAPI customOpenAPI() {
 		return new OpenAPI()
 				.components(
-						new Components().addSecuritySchemes("basicScheme",
+						new Components().addSecuritySchemes("bearerAuth",
 								new SecurityScheme().type(SecurityScheme.Type.HTTP)
-									.scheme("basic")
+									.scheme("bearer").bearerFormat("JWT")
 								)
 						)
 				.info(
@@ -34,7 +35,8 @@ public class OpenApiConfig {
 										.url("http://localhost:8081")
 									)
 							.version("Versão 0.0.1-SNAPSHOT")
-						);
+						)
+				.addSecurityItem(new SecurityRequirement().addList("bearerAuth"));
 				
 	}
 	
